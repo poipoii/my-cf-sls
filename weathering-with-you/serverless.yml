@@ -1,0 +1,23 @@
+service:
+  name: weathering-with-you
+
+provider:
+  name: cloudflare
+  config:
+    accountId: ${env:CLOUDFLARE_ACCOUNT_ID}
+    zoneId: ${env:CLOUDFLARE_ZONE_ID}
+  environment:
+    OPENWEATHERMAP_APPID: ${env:OPENWEATHERMAP_APPID}
+
+plugins:
+  - serverless-cloudflare-workers
+
+functions:
+  weathering-with-you:
+    name: weathering-with-you
+    script: src/index
+    webpack: true
+    events:
+      - http:
+          url: ${env:CLOUDFLARE_ZONE_NAME}/weathering-with-you*
+          method: GET

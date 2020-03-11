@@ -1,0 +1,18 @@
+{
+  "name": "weathering-with-you",
+  "version": "1.0.0",
+  "description": "Cloudflare serverless deployment for self-serve customers",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "serverless deploy",
+    "remove": "serverless remove"
+  },
+  "author": "cloudflare",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-cloudflare-workers": "1.2.0"
+  },
+  "dependencies": {
+    "serverless": "1.66.0"
+  }
+}

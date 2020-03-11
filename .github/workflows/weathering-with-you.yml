@@ -1,0 +1,35 @@
+name: weathering-with-you
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'weathering-with-you/src/*'
+      - 'weathering-with-you/package.json'
+      - 'weathering-with-you/serverless.yml'
+      - '.github/workflows/weathering-with-you.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Deploy
+      run: |
+        cd weathering-with-you
+        # install packages
+        yarn install
+        # run deploy script
+        bash scripts/deploy.sh
+      env:
+        CLOUDFLARE_AUTH_KEY: ${{ secrets.CLOUDFLARE_AUTH_KEY }}
+        CLOUDFLARE_AUTH_EMAIL: ${{ secrets.CLOUDFLARE_AUTH_EMAIL }}
+        CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        CLOUDFLARE_ZONE_NAME: ${{ secrets.CLOUDFLARE_ZONE_NAME }}
+        OPENWEATHERMAP_APPID: ${{ secrets.OPENWEATHERMAP_APPID }}

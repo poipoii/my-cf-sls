@@ -12,7 +12,10 @@
   "devDependencies": {
     "serverless-cloudflare-workers": "1.2.0"
   },
+  "resolutions": {
+    "dot-prop": "^5.1.1"
+  },
   "dependencies": {
-    "serverless": "1.66.0"
+    "serverless": "1.78.1"
   }
 }

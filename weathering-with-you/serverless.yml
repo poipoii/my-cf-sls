@@ -1,5 +1,4 @@
-service:
-  name: weathering-with-you
+service: weathering-with-you
 
 provider:
   name: cloudflare

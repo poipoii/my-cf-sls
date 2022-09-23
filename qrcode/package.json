@@ -1,0 +1,27 @@
+{
+  "name": "qrcode",
+  "version": "1.0.0",
+  "description": "Cloudflare serverless deployment for self-serve customers",
+  "main": "index.js",
+  "scripts": {
+    "package": "serverless package",
+    "deploy": "serverless deploy",
+    "remove": "serverless remove"
+  },
+  "author": "cloudflare",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-cloudflare-workers": "1.2.0"
+  },
+  "resolutions": {
+    "bl": "^4.0.3",
+    "dot-prop": "^5.1.1",
+    "file-type": "^16.5.4",
+    "glob-parent": "^5.1.2",
+    "node-fetch": "^2.6.1"
+  },
+  "dependencies": {
+    "qrcode-generator": "^1.4.4",
+    "serverless": "3.21.0"
+  }
+}

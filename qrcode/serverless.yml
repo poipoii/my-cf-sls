@@ -1,0 +1,22 @@
+service: qrcode
+
+configValidationMode: off
+
+provider:
+  name: cloudflare
+  config:
+    accountId: ${env:CLOUDFLARE_ACCOUNT_ID}
+    zoneId: ${env:CLOUDFLARE_ZONE_ID}
+
+plugins:
+  - serverless-cloudflare-workers
+
+functions:
+  qrcode:
+    name: qrcode
+    script: src/index
+    webpack: true
+    events:
+      - http:
+          url: ${env:CLOUDFLARE_ZONE_NAME}/qrcode*
+          method: GET

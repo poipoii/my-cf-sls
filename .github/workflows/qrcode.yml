@@ -1,0 +1,34 @@
+name: qrcode
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'qrcode/src/*'
+      - 'qrcode/package.json'
+      - 'qrcode/serverless.yml'
+      - '.github/workflows/qrcode.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Deploy
+      run: |
+        cd qrcode
+        # install packages
+        yarn install
+        # run deploy script
+        bash scripts/deploy.sh
+      env:
+        CLOUDFLARE_AUTH_KEY: ${{ secrets.CLOUDFLARE_AUTH_KEY }}
+        CLOUDFLARE_AUTH_EMAIL: ${{ secrets.CLOUDFLARE_AUTH_EMAIL }}
+        CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        CLOUDFLARE_ZONE_NAME: ${{ secrets.CLOUDFLARE_ZONE_NAME }}
